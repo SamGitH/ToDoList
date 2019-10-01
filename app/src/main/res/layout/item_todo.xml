@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    card_view:cardCornerRadius="@dimen/corner_radius_8"
+    android:layout_margin="@dimen/spacing_small_8"
+    card_view:cardElevation="@dimen/spacing_small_8"
+    tools:background="@color/colorPrimary">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/it_text_view_head"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@id/it_text_view_main"
+            android:lines="1"
+            android:textStyle="bold"
+            android:textSize="@dimen/font_large_24"
+            android:layout_margin="@dimen/spacing_small_8"
+            android:hint="@string/hint_head"
+            tools:text="Head"
+            />
+        <TextView
+            android:id="@+id/it_text_view_main"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            card_view:layout_constraintTop_toBottomOf="@id/it_text_view_head"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@id/it_status"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:lineSpacingExtra="3sp"
+            android:maxLines="4"
+            android:textSize="@dimen/font_normal_16"
+            android:layout_margin="@dimen/spacing_small_8"
+            android:hint="@string/hint_head"
+            tools:text="Some text"
+            />
+        <View
+            android:id="@+id/it_status"
+            android:layout_width="@dimen/spacing_small_8"
+            android:layout_height="match_parent"
+            card_view:layout_constraintBottom_toTopOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            tools:background="@color/colorStatusGreen"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+    <string name="fl_my_todo">Мои дела</string>
+    <string name="hint_head">Пусто</string>
+    <string name="hint_input_head">Введите заголовок</string>
+    <string name="hint_input_text">Введите текст</string>
+    <string name="text_priority">Приоритет</string>
+    <string name="text_create">Создать</string>
+</resources>
