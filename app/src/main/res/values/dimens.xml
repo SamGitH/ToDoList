@@ -10,7 +10,7 @@
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="spacing_tiny_4">4dp</dimen>
 
-    <dimen name="button_size_56">56dp</dimen>
+    <dimen name="button_size_76">76dp</dimen>
 
     <dimen name="corner_radius_8">8dp</dimen>
     <dimen name="top_size_80">80dp</dimen>

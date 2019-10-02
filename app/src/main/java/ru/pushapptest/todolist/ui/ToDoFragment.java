@@ -29,6 +29,7 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
     private final int BUT_RED = R.id.ft_circle_red;
     private final int BUT_YELLOW = R.id.ft_circle_yellow;
     private final int BUT_GREEN = R.id.ft_circle_green;
+    private final int BUT_DONE = R.id.ft_btn_done;
 
     private EditText headText;
     private EditText mainText;
@@ -37,6 +38,7 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
     private Button redBtn;
     private Button yellowBtn;
     private Button greenBtn;
+    private Button doneBtn;
 
     @Nullable
     @Override
@@ -54,7 +56,7 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
         }
 
         findViews(view);
-        bind();
+        bind(view);
     }
 
     private void findViews(View view){
@@ -65,15 +67,28 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
         redBtn = view.findViewById(BUT_RED);
         yellowBtn = view.findViewById(BUT_YELLOW);
         greenBtn = view.findViewById(BUT_GREEN);
+        doneBtn = view.findViewById(BUT_DONE);
     }
 
-    private void bind() {
+    private void bind(View v) {
         if(todo != null){
             headText.setText(todo.headText);
             mainText.setText(todo.mainText);
             createBtn.setText("ИЗМЕНИТЬ");
+            doneBtn.setVisibility(View.VISIBLE);
+            doneBtn.setOnClickListener(this);
+            if (todo.status != null){
+                if (todo.status.equals("GREEN"))
+                    greenBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_green));
+                if (todo.status.equals("YELLOW"))
+                    yellowBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_yellow));
+                if (todo.status.equals("RED"))
+                    redBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_red));
+            }
             //сделать статус
         }
+        else
+            doneBtn.setVisibility(View.INVISIBLE);
         backBtn.setOnClickListener(this);
         createBtn.setOnClickListener(this);
         redBtn.setOnClickListener(this);
@@ -105,16 +120,33 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
             if (getFragmentManager() != null) {
                 getFragmentManager().beginTransaction().replace(R.id.activity_main, toDoListFragment).commit();
             }
+            MainActivity.sortList();
+        }
+        if(v.getId() == BUT_DONE){
+            MainActivity.toDoList.remove(number);
+            Fragment toDoListFragment = new ToDoListFragment();
+            if (getFragmentManager() != null) {
+                getFragmentManager().beginTransaction().replace(R.id.activity_main, toDoListFragment).commit();
+            }
+            MainActivity.sortList();
         }
         if(v.getId() == BUT_RED){
-            //сделать статус
             status = "RED";
+            redBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_red));
+            yellowBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_yellow));
+            greenBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_green));
         }
         if(v.getId() == BUT_YELLOW){
             status = "YELLOW";
+            redBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_red));
+            yellowBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_yellow));
+            greenBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_green));
         }
         if(v.getId() == BUT_GREEN){
             status = "GREEN";
+            redBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_red));
+            yellowBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.circle_yellow));
+            greenBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_green));
         }
     }
 }

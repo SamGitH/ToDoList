@@ -21,19 +21,19 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     private List<Todo> todos;
     private final Listener onTodoClickListener;
-    private Context context;
+//    private Context context;
 
-    public TodoAdapter(List<Todo> todos, Context context,Listener onTodoClickListener) {
+    public TodoAdapter(List<Todo> todos, Listener onTodoClickListener) {
         this.todos = todos;
         this.onTodoClickListener = onTodoClickListener;
-        this.context = context;
+//        this.context = context;
     }
 
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_todo, viewGroup, false);
-        return new TodoViewHolder(view, context, onTodoClickListener);
+        return new TodoViewHolder(view, onTodoClickListener);
     }
 
     @Override
@@ -58,11 +58,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private final View status;
         private Todo todo;
         private int number;
-        private Context context;
+//        private Context context;
 
-        public TodoViewHolder(@NonNull View itemView, Context context,final Listener onTodoClickListener) {
+        public TodoViewHolder(@NonNull View itemView, final Listener onTodoClickListener) {
             super(itemView);
-            this.context = context;
+//            this.context = context;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -80,22 +80,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             this.number = number;
             headText.setText(todo.headText);
             mainText.setText(todo.mainText);
-//            switch (todo.status){
-//                case GREEN:
-//                    status.setBackgroundColor(context.getResources()
-//                            .getColor(R.color.colorStatusGreen));
-//                    break;
-//                case YELLOW:
-//                    status.setBackgroundColor(context.getResources()
-//                            .getColor(R.color.colorStatusYellow));
-//                    break;
-//                case RED:
-//                    status.setBackgroundColor(context.getResources()
-//                            .getColor(R.color.colorStatusRed));
-//                    break;
-//                default:
-//                    break;
-//            }
+            if(todo.status != null) {
+                if (todo.status.equals("GREEN"))
+                    status.setBackgroundColor(status.getContext().getResources().getColor(R.color.colorStatusGreen));
+                if (todo.status.equals("YELLOW"))
+                    status.setBackgroundColor(status.getContext().getResources().getColor(R.color.colorStatusYellow));
+                if (todo.status.equals("RED"))
+                    status.setBackgroundColor(status.getContext().getResources().getColor(R.color.colorStatusRed));
+            }
         }
 
     }

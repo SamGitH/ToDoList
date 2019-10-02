@@ -7,7 +7,7 @@
     card_view:cardCornerRadius="@dimen/corner_radius_8"
     android:layout_margin="@dimen/spacing_small_8"
     card_view:cardElevation="@dimen/spacing_small_8"
-    tools:background="@color/colorPrimary">
+    tools:background="@color/colorBlue">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,22 +31,24 @@
             android:layout_height="match_parent"
             card_view:layout_constraintTop_toBottomOf="@id/it_text_view_head"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintEnd_toEndOf="@id/it_status"
+            card_view:layout_constraintEnd_toStartOf="@id/it_status"
             card_view:layout_constraintBottom_toBottomOf="parent"
             android:lineSpacingExtra="3sp"
             android:maxLines="4"
             android:textSize="@dimen/font_normal_16"
             android:layout_margin="@dimen/spacing_small_8"
-            android:hint="@string/hint_head"
+            android:hint="@string/hint_text"
+            android:ellipsize="end"
             tools:text="Some text"
             />
         <View
             android:id="@+id/it_status"
             android:layout_width="@dimen/spacing_small_8"
-            android:layout_height="match_parent"
-            card_view:layout_constraintBottom_toTopOf="parent"
+            android:layout_height="0dp"
+            card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@id/it_text_view_main"
             tools:background="@color/colorStatusGreen"
             />
     </android.support.constraint.ConstraintLayout>

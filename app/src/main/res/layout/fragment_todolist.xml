@@ -49,6 +49,7 @@
         android:tint="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/colorBlue"
         app:srcCompat="@android:drawable/ic_input_add"
         />
 

@@ -15,11 +15,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ru.pushapptest.todolist.MainActivity;
 import ru.pushapptest.todolist.R;
+import ru.pushapptest.todolist.database.WorkDB;
 import ru.pushapptest.todolist.models.Todo;
 
 public class ToDoListFragment extends Fragment {
 
-    private final TodoAdapter todoAdapter = new TodoAdapter(MainActivity.toDoList, getActivity(), new TodoAdapter.Listener() {
+    private final TodoAdapter todoAdapter = new TodoAdapter(MainActivity.toDoList, new TodoAdapter.Listener() {
         @Override
         public void onTodoClicked(Todo todo, int number) {
             Bundle arg = new Bundle();
@@ -67,5 +68,6 @@ public class ToDoListFragment extends Fragment {
                 }
             }
         });
+        WorkDB.todoAdapter = todoAdapter;//не робит
     }
 }
