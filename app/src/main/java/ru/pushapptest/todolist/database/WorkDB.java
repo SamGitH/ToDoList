@@ -1,9 +1,5 @@
 package ru.pushapptest.todolist.database;
 
-import android.content.Context;
-
-import androidx.room.Room;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,41 +11,22 @@ import ru.pushapptest.todolist.App;
 import ru.pushapptest.todolist.MainActivity;
 import ru.pushapptest.todolist.database.models.TodoDB;
 import ru.pushapptest.todolist.models.Todo;
-import ru.pushapptest.todolist.ui.TodoAdapter;
 
 public class WorkDB {
 
-    private static WorkDB singleton;
-    public static Boolean isLoad = false;
-    public static TodoAdapter todoAdapter;
-
-    public static WorkDB getWorkDB(Context context) {
-        if (singleton == null) {
-            synchronized (WorkDB.class) {
-                if (singleton == null) {
-                    singleton = new WorkDB();
-                }
-            }
-        }
-        return singleton;
-    }
-
     public static void loadData(){
+
         App.getDb().todoDao().getAll()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMapCompletable(todoDb -> Observable.fromIterable(todoDb)
                         .map(item -> Todo.toDoDbtoTodo(item))
                         .toList()
                         .doOnSuccess(todos -> {
                             MainActivity.toDoList =  new ArrayList<>(todos);
-                            if(todoAdapter != null)
-                                todoAdapter.notifyDataSetChanged();
                         })
                         .ignoreElement()
                 )
                 .subscribe();
-        isLoad = true;
     }
 
     public static void unloadData(){

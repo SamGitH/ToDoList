@@ -4,12 +4,10 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import ru.pushapptest.todolist.database.models.TodoDB;
 
 import static androidx.room.OnConflictStrategy.REPLACE;

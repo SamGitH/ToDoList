@@ -15,7 +15,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ru.pushapptest.todolist.MainActivity;
 import ru.pushapptest.todolist.R;
-import ru.pushapptest.todolist.database.WorkDB;
 import ru.pushapptest.todolist.models.Todo;
 
 public class ToDoListFragment extends Fragment {
@@ -25,7 +24,6 @@ public class ToDoListFragment extends Fragment {
         public void onTodoClicked(Todo todo, int number) {
             Bundle arg = new Bundle();
             Fragment toDoFragment = new ToDoFragment();
-//            arg.putParcelable(ToDoFragment.TODO, todo);
             arg.putInt(ToDoFragment.TODO, number);
             toDoFragment.setArguments(arg);
             if (getFragmentManager() != null) {
@@ -68,6 +66,10 @@ public class ToDoListFragment extends Fragment {
                 }
             }
         });
-        WorkDB.todoAdapter = todoAdapter;//не робит
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
     }
 }

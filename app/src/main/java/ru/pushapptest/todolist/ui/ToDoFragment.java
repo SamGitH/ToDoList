@@ -86,7 +86,6 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
                 if (todo.status.equals("RED"))
                     redBtn.setBackground(v.getContext().getResources().getDrawable(R.drawable.check_circle_red));
             }
-            //сделать статус
         }
         else
             doneBtn.setVisibility(View.INVISIBLE);

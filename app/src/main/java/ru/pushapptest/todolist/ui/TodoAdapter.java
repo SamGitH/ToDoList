@@ -1,14 +1,11 @@
 package ru.pushapptest.todolist.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,12 +18,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     private List<Todo> todos;
     private final Listener onTodoClickListener;
-//    private Context context;
 
     public TodoAdapter(List<Todo> todos, Listener onTodoClickListener) {
         this.todos = todos;
         this.onTodoClickListener = onTodoClickListener;
-//        this.context = context;
     }
 
     @NonNull
@@ -58,11 +53,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private final View status;
         private Todo todo;
         private int number;
-//        private Context context;
 
         public TodoViewHolder(@NonNull View itemView, final Listener onTodoClickListener) {
             super(itemView);
-//            this.context = context;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
