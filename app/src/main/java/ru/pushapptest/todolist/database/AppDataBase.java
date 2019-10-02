@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import ru.pushapptest.todolist.database.models.TodoDB;
 
-@Database(entities = {TodoDB.class}, version = 1, exportSchema = false)
+@Database(entities = {TodoDB.class}, version = 2, exportSchema = false)
 
 public abstract class AppDataBase extends RoomDatabase {
 
@@ -23,6 +23,7 @@ public abstract class AppDataBase extends RoomDatabase {
                     singleton = Room.databaseBuilder(context.getApplicationContext(),
                             AppDataBase.class,
                             DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

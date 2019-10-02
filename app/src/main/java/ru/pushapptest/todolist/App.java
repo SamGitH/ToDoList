@@ -1,6 +1,7 @@
 package ru.pushapptest.todolist;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.room.Room;
 
@@ -10,19 +11,17 @@ import ru.pushapptest.todolist.database.AppDataBase;
 
 public class App extends Application {
 
-    private static AppDataBase db;
+    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        db = AppDataBase.getAppDatabase(this);
-        db = Room.databaseBuilder(this, AppDataBase.class, "todo.db")
-                .fallbackToDestructiveMigration()
-                .build();
+        context = this;
+
         Stetho.initializeWithDefaults(this);
     }
 
-    public static AppDataBase getDb() {
-        return db;
+    public static Context getContext(){
+        return context;
     }
 }

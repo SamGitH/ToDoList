@@ -39,11 +39,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder viewHolder, int i) {
         Todo todo = todos.get(i);
-        viewHolder.bind(todo, i);
+        viewHolder.bind(todo, todo.id);
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 
     public interface Listener{
-        void onTodoClicked(Todo todo, int number);
+        void onTodoClicked(Todo todo, long number);
     }
 
     @Override
@@ -57,7 +61,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private final TextView mainText;
         private final View status;
         private Todo todo;
-        private int number;
+        private long number;
 //        private Context context;
 
         public TodoViewHolder(@NonNull View itemView, final Listener onTodoClickListener) {
@@ -75,7 +79,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         }
 
         @SuppressLint("SetTextI18n")
-        private void bind(@NonNull Todo todo, int number) {
+        private void bind(@NonNull Todo todo, long number) {
             this.todo = todo;
             this.number = number;
             headText.setText(todo.headText);

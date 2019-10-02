@@ -1,24 +1,21 @@
 package ru.pushapptest.todolist.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import ru.pushapptest.todolist.database.models.TodoDB;
 
 public class Todo {
+
+    public long id;
     public String headText;
     public String mainText;
     public String status;
 
-    public Todo(String headText, String mainText, String status) {
+    public Todo(long id, String headText, String mainText, String status) {
+        this.id = id;
         this.headText = headText;
         this.mainText = mainText;
         this.status = status;
     }
 
-    public static Todo toDoDbtoTodo(TodoDB todoDB){
-        return new Todo(todoDB.headText, todoDB.mainText, todoDB.status);
-    }
 //    public Todo (Parcel in){
 //        headText = in.readString();
 //        mainText = in.readString();

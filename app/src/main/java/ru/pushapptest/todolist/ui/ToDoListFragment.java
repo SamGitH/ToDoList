@@ -13,26 +13,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import ru.pushapptest.todolist.MainActivity;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import io.reactivex.disposables.Disposable;
 import ru.pushapptest.todolist.R;
-import ru.pushapptest.todolist.database.WorkDB;
+import ru.pushapptest.todolist.database.TodoRepository;
 import ru.pushapptest.todolist.models.Todo;
 
 public class ToDoListFragment extends Fragment {
 
-    private final TodoAdapter todoAdapter = new TodoAdapter(MainActivity.toDoList, new TodoAdapter.Listener() {
+    Disposable loadTodosDisposable;
+
+    private final TodoAdapter todoAdapter = new TodoAdapter(new ArrayList<>(), new TodoAdapter.Listener() {
         @Override
-        public void onTodoClicked(Todo todo, int number) {
+        public void onTodoClicked(Todo todo, long number) {
             Bundle arg = new Bundle();
             Fragment toDoFragment = new ToDoFragment();
-//            arg.putParcelable(ToDoFragment.TODO, todo);
-            arg.putInt(ToDoFragment.TODO, number);
+//            arg.putParcelable(TodoFragment.TODO, todo);
+            arg.putLong(ToDoFragment.TODO, number);
             toDoFragment.setArguments(arg);
             if (getFragmentManager() != null) {
                 getFragmentManager().beginTransaction().replace(R.id.activity_main, toDoFragment).commit();
             }
         }
     });
+
 
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
@@ -44,14 +50,38 @@ public class ToDoListFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
-        if (view != null) {
-            findViews(view);
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (loadTodosDisposable != null) {
+            loadTodosDisposable.dispose();
+            loadTodosDisposable = null;
         }
-        bind();
     }
 
-    private void findViews(@NonNull View view){
+    @Override
+    public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
+        if (view != null) {
+            bindViews(view);
+        }
+        bind();
+
+        loadData();
+    }
+
+    private void loadData() {
+        loadTodosDisposable = TodoRepository.getInstance().getTodos()
+                .map(list -> {
+                    Collections.sort(list, (o1, o2) -> o1.headText.compareTo(o2.headText));
+                    return list;
+                })
+                .doOnSuccess((todos) -> {
+                    todoAdapter.setTodos(todos);
+                    todoAdapter.notifyDataSetChanged();
+                }).subscribe();
+    }
+
+    private void bindViews(@NonNull View view) {
         recyclerView = view.findViewById(R.id.fl_recyclerview);
         fab = view.findViewById(R.id.fl_fab);
     }
@@ -68,6 +98,5 @@ public class ToDoListFragment extends Fragment {
                 }
             }
         });
-        WorkDB.todoAdapter = todoAdapter;//не робит
     }
 }
