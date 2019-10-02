@@ -42,6 +42,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         viewHolder.bind(todo, i);
     }
 
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
+    }
+
     public interface Listener{
         void onTodoClicked(Todo todo, int number);
     }

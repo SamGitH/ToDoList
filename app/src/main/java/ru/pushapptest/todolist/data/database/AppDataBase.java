@@ -1,4 +1,4 @@
-package ru.pushapptest.todolist.database;
+package ru.pushapptest.todolist.data.database;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import ru.pushapptest.todolist.database.models.TodoDB;
+import ru.pushapptest.todolist.data.database.models.TodoDB;
 
 @Database(entities = {TodoDB.class}, version = 1, exportSchema = false)
 

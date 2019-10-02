@@ -1,4 +1,4 @@
-package ru.pushapptest.todolist.database.models;
+package ru.pushapptest.todolist.data.database.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
