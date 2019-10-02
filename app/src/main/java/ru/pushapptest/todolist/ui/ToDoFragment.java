@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +34,7 @@ public class ToDoFragment extends Fragment implements View.OnClickListener {
 
     private EditText headText;
     private EditText mainText;
-    private Button backBtn;
+    private ImageButton backBtn;
     private Button createBtn;
     private Button redBtn;
     private Button yellowBtn;

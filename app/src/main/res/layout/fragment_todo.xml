@@ -14,11 +14,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/rectangle_darkblue"
         />
-    <Button
+    <ImageButton
         android:id="@+id/ft_back_but"
         android:layout_width="34dp"
         android:layout_height="34dp"
         app:srcCompat="@drawable/ic_close_black_24dp"
+        android:background="@null"
         app:layout_constraintStart_toStartOf="@id/ft_rectangle_view"
         app:layout_constraintBottom_toBottomOf="@id/ft_rectangle_view"
         android:layout_margin="@dimen/spacing_normal_16"/>
